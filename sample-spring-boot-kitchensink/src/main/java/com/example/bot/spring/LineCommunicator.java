@@ -107,6 +107,8 @@ public class LineCommunicator implements Communicator{
 	}
 
 	
+
+
 	
 	private void reply(@NonNull String replyToken, @NonNull Message message) {
 		reply(replyToken, Collections.singletonList(message));
@@ -131,7 +133,7 @@ public class LineCommunicator implements Communicator{
 		} catch (InterruptedException | ExecutionException e) {
 			throw new RuntimeException(e);
 		}
-	
+	}
 	
 	@Override
 	public void pushCustomerNotification(ArrayList<String> recepients, String message) {
@@ -144,6 +146,5 @@ public class LineCommunicator implements Communicator{
 		for(String userId:recepients){
 			push(userId, Collections.singletonList(new TextMessage(message)));
 		}
-	}}
-	
+	}
 }
