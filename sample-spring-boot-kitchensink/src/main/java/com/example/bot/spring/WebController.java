@@ -19,13 +19,15 @@ public class WebController {
 	private final String SUCCESS = "Operation executed successfully";
 	
 	private StorageEngine database = new PSQLDatabaseEngine();
+	@Autowired
+	LineCommunicator linCom;
 
 	@RequestMapping("/cancelBooking")
 	public String cancelBooking(@RequestParam(value="tourId", defaultValue="") String tourId,
 			@RequestParam(value="date", defaultValue="") String date) {
 		String answer = SUCCESS;
 		log.info("Cancelling tour via the web application ------------------------------");
-		LineCommunicator linCom = new LineCommunicator();
+		
 		try{
 			ArrayList<String> customers = database.getBookedCustomers(tourId, new SimpleDateFormat("yyyy-MM-dd").parse(date));
 			String message = "The tour on the " + date+" you have booked, has been cancelled.";
