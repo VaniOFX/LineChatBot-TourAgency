@@ -311,10 +311,9 @@ public class PSQLDatabaseEngine implements StorageEngine{
 			ResultSet rs = stmt.executeQuery();	
 			while(rs.next()){
 				String customerId =  rs.getString("customerid");
-				log.info(customerId);
+				log.info(customerId+" ---------------------from the database");
 				users.add(customerId);
 			}
-			log.info("------------------------------------------------------I could no customers found");
 			rs.close();
 			stmt.close();		
 			con.close();
