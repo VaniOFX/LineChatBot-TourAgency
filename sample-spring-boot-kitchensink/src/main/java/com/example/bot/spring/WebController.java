@@ -20,7 +20,7 @@ public class WebController {
 	
 	private StorageEngine database = new PSQLDatabaseEngine();
 	@Autowired
-	LineCommunicator linCom;
+	private LineCommunicator lineCom;
 
 	@RequestMapping("/cancelBooking")
 	public String cancelBooking(@RequestParam(value="tourId", defaultValue="") String tourId,
@@ -31,7 +31,7 @@ public class WebController {
 		try{
 			ArrayList<String> customers = database.getBookedCustomers(tourId, new SimpleDateFormat("yyyy-MM-dd").parse(date));
 			String message = "The tour on the " + date+" you have booked, has been cancelled.";
-			linCom.pushCustomerNotification(customers, message);	
+			lineCom.pushCustomerNotification(customers, message);	
 		}
 		catch(Exception e){
 			return ERROR;

@@ -3,9 +3,15 @@ package com.example.bot.spring;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+@Component
 public class HandlerFactory {
 	
 	private HashMap<String,EventHandler> bookingMap = new HashMap<>();
+	@Autowired
+	private LoggerHandler lg;
 	
 	
 	public EventHandler getHandler(String intent, String userId){
@@ -39,7 +45,7 @@ public class HandlerFactory {
 			}
 		}
 		else if (intent.equals("none")){
-			currEventHandler = new LoggerHandler();
+			currEventHandler = lg;
 		}
 		else if (intent.length()>=7 && intent.substring(intent.length()-7).equals("enquiry")){
 			currEventHandler = new EnquiryHandler();
