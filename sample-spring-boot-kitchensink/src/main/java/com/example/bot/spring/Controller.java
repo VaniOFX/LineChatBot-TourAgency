@@ -102,8 +102,7 @@ public class Controller {
 
 	private LanguageProcessor languageProcessor = new LuisNLP();
 	@Autowired
-	private HandlerFactory handlerFactory;
-	private MessageHandler messageHandler = new MessageHandler(handlerFactory);
+	private MessageHandler messageHandler = new MessageHandler();
 	@Autowired
 	private LineCommunicator lineCom;
 

@@ -9,6 +9,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import lombok.extern.slf4j.Slf4j;
 
 import java.net.URISyntaxException;
@@ -16,6 +19,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat; 
 
 @Slf4j
+@Component
 public class MessageHandler{
 	
 	public static final String COMPLETEDBOOKING = "Your booking is complete. You have to pay ";
@@ -26,13 +30,13 @@ public class MessageHandler{
 	public static final String GREETING = "Hello, how can I help you today?";
 	public static final String FULLTOUR = "The tour is full. We are sorry for the inconvenience. Please pick a different date or another tour.";
 	private EventHandler currEventHandler;
+	@Autowired
 	private HandlerFactory factory;
 	
 	
 	
 	
-	public MessageHandler(HandlerFactory factory){
-		this.factory = factory;
+	public MessageHandler(){
 	}
 	
 	public String handleTextContent(ArrayList<String> inputArray, String userId){
